@@ -36,9 +36,6 @@ Since this project uses submodules, clone it recursively:
 
 ```bash
 git clone --recursive https://github.com/nambhine1/axi_stream_stage.git
-
-cd axi_stream_stage
-git submodule update --init --recursive
 ```
 
 If you have already cloned the repository without submodules, initialize and update them by running:
