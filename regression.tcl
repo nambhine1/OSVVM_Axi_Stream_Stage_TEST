@@ -1,4 +1,4 @@
-source lib/Scripts/StartUp.tcl
+source lib/OsvvmLibraries/Scripts/StartUp.tcl
 
 build lib/OsvvmLibraries/OsvvmLibraries.pro
       
