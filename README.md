@@ -3,7 +3,21 @@
 
 This project demonstrates how to use **OSVVM** (Open Source VHDL Verification Methodology) to verify a simple AXI4-Stream pipeline stage. The design features a basic AXI4-Stream interface with standard VALID/READY handshaking and single-beat buffering.
 
-The purpose of this project is to showcase how OSVVM can be applied to verify the functional behavior of the `axi_stream_stage` module. It provides examples of stimulus generation and functional checking.
+The purpose of this project is to showcase how OSVVM can be effectively used to verify the functional behavior of the `axi_stream_stage` module. This includes examples of stimulus generation, transaction modeling, and functional checking through structured test benches.
+
+---
+
+## Project Structure
+
+```
+axi_stream_stage/
+├── lib/               # OSVVM and external library dependencies
+├── src/               # Source code for the AXI4-Stream pipeline stage
+├── tb/                # Testbenches using OSVVM methodology
+├── regression.tcl     # TCL script to automate simulation and regression runs
+├── .gitmodules        # Git submodule references
+└── README.md          # Project documentation
+```
 
 ---
 
@@ -35,7 +49,9 @@ cd axi_stream_stage
 git submodule update --init --recursive
 ```
 
-### Running Simulations
+---
+
+## Running Simulations
 
 1. Open your preferred simulator (Riviera-PRO, GHDL, or QuestaSim).
 2. Open the console or command line interface within the simulator.
@@ -45,8 +61,14 @@ git submodule update --init --recursive
 cd /path/to/axi_stream_stage
 ```
 
-4. Run the regression script to compile and run tests:
+4. Run the regression script to compile and execute tests:
 
 ```tcl
 source regression.tcl
 ```
+
+---
+
+## Author
+
+- **Dr.-Ing. Nambinina Rakotojaona**
