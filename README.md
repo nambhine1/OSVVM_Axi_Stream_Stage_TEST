@@ -42,7 +42,6 @@ If you have already cloned the repository without submodules, initialize and upd
 
 ```bash
 cd axi_stream_stage
-git submodule update --init --recursive
 ```
 
 ---
