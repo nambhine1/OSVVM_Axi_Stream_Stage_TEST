@@ -39,9 +39,13 @@
 --  See the License for the specific language governing permissions and
 --  limitations under the License.TestCtrl
 --  
-architecture AxiSendGet2 of TestCtrl is
 
+
+architecture AxiSendGet2 of TestCtrl is
+  use      osvvm.ScoreboardPkg_slv.all;
   signal   TestDone : integer_barrier := 1 ;
+  signal   SB : ScoreboardIDType;
+
    
 begin
 
@@ -57,11 +61,12 @@ begin
     SetTranscriptMirror(TRUE);
     SetLogEnable(PASSED, FALSE);
     SetLogEnable(INFO, FALSE);
-
+    
 
     -- Wait for testbench initialization 
     wait for 0 ns;
     wait until nReset = '1' ; 
+	SB <= NEWID ("Score_Board"); 
     ClearAlerts;
     WaitForBarrier(TestDone, 10 ms);
     AlertIf(now >= 10 ms, "Test finished due to timeout");
@@ -97,8 +102,9 @@ begin
 		
 		TxData := (others => '0');  -- Start from 0
 		for J in 0 to 999 loop
+			Push (SB,TxData);
 			Send(StreamTxRec, TxData);
-			TxData := std_logic_vector(unsigned(TxData) + 1);
+			TxData := std_logic_vector(unsigned(TxData) + 6);
 		end loop;
 		
 		WaitForClock(StreamTxRec, 2);
@@ -122,10 +128,11 @@ begin
 	
 	ExpData := (others => '0');
 	for J in 0 to 999 loop
-	Get(StreamRxRec, RcvData);
-	log("Data Received: " & to_hstring(RcvData));
-	AffirmIfEqual(RcvData, ExpData, "Data received and matched");
-	ExpData := std_logic_vector(unsigned(ExpData) + 1);
+		Get(StreamRxRec, RcvData);
+		log("Data Received: " & to_hstring(RcvData), Level => DEBUG);
+		Check(SB,RcvData);
+		--AffirmIfEqual(RcvData, ExpData, "Data received and matched");
+		--ExpData := std_logic_vector(unsigned(ExpData) + 1);
 	end loop;
 	
 	WaitForClock(StreamRxRec, 2);
