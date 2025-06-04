@@ -9,19 +9,21 @@ if {$::osvvm::ToolName eq "GHDL"} {
     SetExtendedSimulateOptions {-frelaxed -Wno-specs -Wno-binding}
     SetExtendedRunOptions {--ieee-asserts=disable-at-0}
 }
-      
+
 if {$::osvvm::ToolName eq "RivieraPRO"} {
     set OMIT_XILINX_FILES 1
-    SetExtendedSimulationOptions {-unbounderror}
-    LinkLibraryDirectory {temp/Riviera-PRO/VHDL_LIBS/*}
+    puts "Simulator = $::osvvm::ToolName, OMIT_XILINX_FILES = $OMIT_XILINX_FILES"
+    LinkLibraryDirectory {temp/VHDL_LIBS}
 }
 
+# add the pre compiled library path below replacing $PrecompiledVivadoIPCores 
 if {$::osvvm::ToolName eq "QuestaSim"} {
-        set OMIT_XILINX_FILES 0
-	SetVHDLVersion 2008
-	vmap unisim "$PrecompiledVivadoIPCores/unisim"
-	vmap xpm "$PrecompiledVivadoIPCores/xpm"
+    set OMIT_XILINX_FILES 0
+    SetVHDLVersion 2008
+    vmap unisim "$PrecompiledVivadoIPCores/unisim"
+    vmap xpm "$PrecompiledVivadoIPCores/xpm"
 }
+
 
 build src/passthrough.pro
 
