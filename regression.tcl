@@ -10,7 +10,7 @@ if {$::osvvm::ToolName eq "GHDL"} {
 	SetExtendedRunOptions {--ieee-asserts=disable-at-0}
 }
       
-if {$::osvvm::ToolName eq "RiveraPRO"} {
+if {$::osvvm::ToolName eq "RivieraPRO"} {
     SetExtendedSimulationOptions {-unbounderror}
     LinkLibraryDirectory {temp/Riviera-PRO/VHDL_LIBS/*}
 }
