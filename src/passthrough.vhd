@@ -1,27 +1,3 @@
-----------------------------------------------------------------------------------
--- Company        : 
--- Engineer       : Nambinina Rakotojaona
--- 
--- Create Date    : 03.06.2025
--- Design Name    : AXI4-Stream Pipeline Stage
--- Module Name    : axi_stream_stage - Behavioral
--- Project Name   : Generic AXI4-Stream Infrastructure
--- Target Devices : Generic FPGA
--- Tool Versions  : Any VHDL-compliant synthesis tool
--- Description    : 
---   This module implements a 1-stage AXI4-Stream pipeline register.
---   It supports standard VALID/READY handshaking and buffers a single
---   data beat. It allows backpressure from downstream modules and 
---   properly stalls the upstream interface if needed.
---
--- Dependencies   : None
---
--- Revision       :
--- Revision 0.01 - Initial version by Nambinina Rakotojaona
--- Additional Comments:
---   Extendable with TLAST/TKEEP/TUSER support for full AXIS compliance.
-----------------------------------------------------------------------------------
-
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 
